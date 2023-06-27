@@ -29,7 +29,7 @@ const server: Server = http.createServer((req: IncomingMessage, res: ServerRespo
         // Handle the request url
         switch (req.url) {
             case "/":
-                fs.readFile(path.join(__dirname, "public", "index.html"), (error, data) => {
+                fs.readFile(path.join(__dirname, "..", "public", "index.html"), (error, data) => {
                     if (error) throw error;
                     res.writeHead(200, { 'Content-Type': 'text/html' });
                     res.end(data)
@@ -50,10 +50,10 @@ const server: Server = http.createServer((req: IncomingMessage, res: ServerRespo
                 res.end(JSON.stringify(users));
                 break;
             default:
-                fs.readFile(path.join(__dirname, "public", fileName), (error, data) => {
+                fs.readFile(path.join(__dirname, "..", "public", fileName), (error, data) => {
                     if (error) {
                         if (error.code == "ENOENT") {
-                            fs.readFile(path.join(__dirname, "public", "404.html"), (error, data) => {
+                            fs.readFile(path.join(__dirname, "..", "public", "404.html"), (error, data) => {
                                 if (error) throw error;
                                 res.writeHead(200, { 'Content-Type': 'text/html' });
                                 res.end(data);
